@@ -29,7 +29,7 @@ It should show *minikube*
 To create a namespace based on file you can use this:
 
 ```
-kubectl apply -f local/namespace.yml
+kubectl apply -f namespace.yml
 ```
 
 Then this namespace can be used instead of default to launch your pods into. To check whethere the new namespace is there you can run
@@ -69,7 +69,7 @@ https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/#cr
 To create a resource for your Ingress Nginx Controller to send traffic to your Service we need to set this up.
 
 ```
-kubectl apply -f local/services/ingress.yml
+kubectl apply -f services/ingress.yml
 ```
 
 Once this is up and running you can check for address and port with 
@@ -105,10 +105,10 @@ https://platform9.com/blog/tutorial-dynamic-provisioning-of-persistent-storage-i
 
 
 ```
-kubectl apply -f local/storage/code-pv-claim.yml
-kubectl apply -f local/storage/nginx-pv-claim.yml
-kubectl apply -f local/storage/mysql-pv-claim.yml
-kubectl apply -f local/storage/redis-pv-claim.yml
+kubectl apply -f storage/code-pv-claim.yml
+kubectl apply -f storage/nginx-pv-claim.yml
+kubectl apply -f storage/mysql-pv-claim.yml
+kubectl apply -f storage/redis-pv-claim.yml
 ```
 
 ### Persistent Volumes' Setup
@@ -154,7 +154,7 @@ drwxrwxrwx 2 root root 4096 Dec  7 05:02 nginx-pv-claim
 We do have a secret to store MySQL data
 
 ```
-kubectl apply -f local/secret.yml
+kubectl apply -f secret.yml
 ```
 
 
@@ -164,19 +164,19 @@ kubectl apply -f local/secret.yml
 To allow Nginx to talk to PHP we do need to expose the PHP container in the app deployment. For that we do a:
 
 ```
-kubectl apply -f local/services/php.yml
+kubectl apply -f services/php.yml
 ```
 
 and for nginx to get Ingress to move data there
 
 ```
-kubectl apply -f local/services/nginx.yml
+kubectl apply -f services/nginx.yml
 ```
 
 For the workspace we use the following:
 
 ```
-kubectl apply -f local/services/workspace.yml
+kubectl apply -f services/workspace.yml
 ```
 
 We may remove this service later down the line.
@@ -188,13 +188,13 @@ Local deployments are split in deployments for the app and other containers
 To fire up the app with the Laravel and Nginx container run
 
 ```
-kubectl apply -f local/deployments/php.yml
+kubectl apply -f deployments/php.yml
 ```
 
 and then
 ```
 kubectl apply -f configs/nginx_configMap.yaml
-kubectl apply -f local/deployments/nginx.yml
+kubectl apply -f deployments/nginx.yml
 ```
 
 
@@ -203,8 +203,8 @@ kubectl apply -f local/deployments/nginx.yml
 then we have the other deployments excluding the databases:
 
 ```
-kubectl apply -f local/deployments/php-worker.yml
-kubectl apply -f local/deployments/workspace.yml
+kubectl apply -f deployments/php-worker.yml
+kubectl apply -f deployments/workspace.yml
 ```
 
 #### Workspace
@@ -215,6 +215,6 @@ Workspace currently works well with NPM and composer. First setup has all files 
 To run the MySQL database and Redis containers run
 
 ```
-kubectl apply -f local/deployments/mysql.yml
-kubectl apply -f local/deployments/redis.yml
+kubectl apply -f deployments/mysql.yml
+kubectl apply -f deployments/redis.yml
 ```
