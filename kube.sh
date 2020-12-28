@@ -114,3 +114,4 @@ kubectl get ingress
 echo -e "${BLUE}All has been setup for local Minikube work with Laravel.${NC}";
 echo -e "${BLUE}Here a quick overview${NC}";
 kubectl get all
+kubectl get endpoints
