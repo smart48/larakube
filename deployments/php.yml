@@ -28,7 +28,7 @@ spec:
       containers:
         - name: php
           # image: php:7-fpm
-          image: smart48/smt-laravel:1.0
+          image: smart48/smt-laravel:1.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
