@@ -66,7 +66,7 @@ echo -e "${BLUE}Start or update all Deployments we need${NC}";
 kubectl apply -f deployments/php.yml
 
 # Nginx Configuration file
-kubectl apply -f ../configs/nginx_configMap.yaml
+kubectl apply -f configs/nginx_configMap.yaml
 
 # Nginx Deployment
 kubectl apply -f deployments/nginx.yml
