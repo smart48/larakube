@@ -4,6 +4,14 @@ Local testing of the Laravel deployments can be done with this Minikube setup. T
 
 **NB** Does not play well with Laravel Valet due to its use of dnsmasq. Turn off DNS Masq before using Minikube.
 
+## Requirements
+
+- Docker
+- Minikube
+- VM installed as part of Minikube such as Hyperkit
+- Dnsmasq turned off or customized
+- `/etc/hosts` to load site locally
+
 ## Quick Start
 
 To quickly get started use the `kube.sh` script in the local directory. It will run all the necessary scripts to get you started with Minikube locally. If you prefer to follow the process some more and do things more hands on then continue reading the steps below.
