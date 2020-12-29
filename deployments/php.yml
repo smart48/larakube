@@ -28,7 +28,7 @@ spec:
       containers:
         - name: php
           # image: php:7-fpm
-          image: smart48/smt-laravel:1.2
+          image: smart48/smt-laravel:1.6
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
@@ -42,6 +42,17 @@ spec:
           # may use /var/www/html at a later stage as this is php container base path 
           # and logical web root
             mountPath: /code
+      initContainers:
+      - name: install
+        image: busybox
+        volumeMounts:
+        - name: code-storage
+          mountPath: /code
+        command:
+        - cp
+        - "-RT"
+        - "/var/www/."
+        - "/code/"
         # - name: laravel-horizon
         #   image: smart48/smt-horizon:latest
         #   # not sure if we need the port and volume here
