@@ -10,7 +10,7 @@ Local *Minikube* development with Laravel can be done with this Larakube setup. 
 - Minikube
 - VM installed as part of Minikube such as Hyperkit
 - Dnsmasq turned off or customized
-- `/etc/hosts` tweak to load site locally
+- `/etc/hosts` tweak to load site locally (`minikube ip` for ip to add to hosts file)
 
 ## Quick Start
 
