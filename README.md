@@ -22,6 +22,8 @@ To quickly get started run `minikube start` followed by the use of the `kube.sh`
 
 It will run all the necessary scripts to get you started with Minikube locally. If you prefer to follow the process some more and do things more hands on then continue reading the steps below.
 
+**NB** Due to Ingress setup being somewhat slow sometimes you may need to run script twice.
+
 ## Startup
 
 To get Minikube running execute the following command:
