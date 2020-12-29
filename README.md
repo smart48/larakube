@@ -14,7 +14,13 @@ Local testing of the Laravel deployments can be done with this Minikube setup. T
 
 ## Quick Start
 
-To quickly get started use the `kube.sh` script in the local directory. It will run all the necessary scripts to get you started with Minikube locally. If you prefer to follow the process some more and do things more hands on then continue reading the steps below.
+To quickly get started use the `kube.sh` script in the local directory:
+
+- on Zsh shell use `bash kube.sh`
+- on Bash shell use `./kube.sh`
+
+
+It will run all the necessary scripts to get you started with Minikube locally. If you prefer to follow the process some more and do things more hands on then continue reading the steps below.
 
 ## Startup
 
