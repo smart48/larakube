@@ -10,7 +10,7 @@ Local testing of the Laravel deployments can be done with this Minikube setup. T
 - Minikube
 - VM installed as part of Minikube such as Hyperkit
 - Dnsmasq turned off or customized
-- `/etc/hosts` to load site locally
+- `/etc/hosts` tweak to load site locally
 
 ## Quick Start
 
