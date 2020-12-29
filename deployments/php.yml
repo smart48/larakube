@@ -53,6 +53,16 @@ spec:
         - "-RT"
         - "/var/www/."
         - "/code/"
+      - name: chown
+        image: busybox
+        volumeMounts:
+        - name: code-storage
+          mountPath: /code
+        command:
+        - chown
+        - "-R"
+        - "1000:1000"
+        - "/code/"
         # - name: laravel-horizon
         #   image: smart48/smt-horizon:latest
         #   # not sure if we need the port and volume here
