@@ -1,6 +1,8 @@
 # Larakube
 
-Local testing of the Laravel deployments can be done with this Minikube setup. Does not play well with Laravel Valet due to its use of dnsmasq. Turn off DNS Masq before using Minikube.
+Local testing of the Laravel deployments can be done with this Minikube setup. This setup has the Minikube Ingress Nginx, PHP FPM, Nginx, MySQL, Redis as well as storage using custom as well as default images.
+
+**NB** Does not play well with Laravel Valet due to its use of dnsmasq. Turn off DNS Masq before using Minikube.
 
 ## Quick Start
 
