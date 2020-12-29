@@ -1,6 +1,6 @@
-# Minikube Laravel 
+# Larakube
 
-Local testing of the deployment can be done with Minikube. Also see [Notes](Notes.md) on setup and possible issues.
+Local testing of the Laravel deployments can be done with this Minikube setup. Does not play well with Laravel Valet due to its use of dnsmasq. Turn off DNS Masq before using Minikube.
 
 ## Quick Start
 
