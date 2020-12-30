@@ -28,7 +28,7 @@ spec:
       containers:
         - name: php
           # image: php:7-fpm
-          image: smart48/smt-laravel:1.6
+          image: smart48/smt-laravel:2.0.2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
@@ -37,32 +37,36 @@ spec:
               cpu: 250m
             limits:
               cpu: 500m
+          # lifecycle:
+          #   postStart:
+          #     exec:
+          #       command: ["/bin/bash", "-c", "cp -rt /var/www/. /code/"]
           volumeMounts:
           - name: code-storage
           # may use /var/www/html at a later stage as this is php container base path 
           # and logical web root
             mountPath: /code
-      initContainers:
-      - name: install
-        image: busybox
-        volumeMounts:
-        - name: code-storage
-          mountPath: /code
-        command:
-        - cp
-        - "-RT"
-        - "/var/www/."
-        - "/code/"
-      - name: chown
-        image: busybox
-        volumeMounts:
-        - name: code-storage
-          mountPath: /code
-        command:
-        - chown
-        - "-R"
-        - "1000:1000"
-        - "/code/"
+      # initContainers:
+      # - name: install
+      #   image: busybox
+      #   volumeMounts:
+      #   - name: code-storage
+      #     mountPath: /code
+      #   command:
+      #   - cp
+      #   - "-RT"
+      #   - "/var/www/."
+      #   - "/code/"
+      # - name: chown
+      #   image: busybox
+      #   volumeMounts:
+      #   - name: code-storage
+      #     mountPath: /code
+      #   command:
+      #   - chown
+      #   - "-R"
+      #   - "1000:1000"
+      #   - "/code/"
         # - name: laravel-horizon
         #   image: smart48/smt-horizon:latest
         #   # not sure if we need the port and volume here
