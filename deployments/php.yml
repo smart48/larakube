@@ -28,7 +28,7 @@ spec:
       containers:
         - name: php
           # image: php:7-fpm
-          image: smart48/smt-laravel:2.0.2
+          image: smart48/smt-laravel:2.0.9
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
@@ -46,27 +46,29 @@ spec:
           # may use /var/www/html at a later stage as this is php container base path 
           # and logical web root
             mountPath: /code
-      # initContainers:
-      # - name: install
-      #   image: busybox
-      #   volumeMounts:
-      #   - name: code-storage
-      #     mountPath: /code
-      #   command:
-      #   - cp
-      #   - "-RT"
-      #   - "/var/www/."
-      #   - "/code/"
-      # - name: chown
-      #   image: busybox
-      #   volumeMounts:
-      #   - name: code-storage
-      #     mountPath: /code
-      #   command:
-      #   - chown
-      #   - "-R"
-      #   - "1000:1000"
-      #   - "/code/"
+      initContainers:
+      - name: install
+        image: smart48/smt-laravel:2.0.9
+        volumeMounts:
+        - name: code-storage
+          mountPath: /code
+          # https://itnext.io/scaling-your-symfony-application-and-preparing-it-for-deployment-on-kubernetes-c102bf246a93
+          # https://www.magalix.com/blog/running-dockerized-laravel-applications-on-top-of-kubernetes
+        command: ["cp", "-r", "/var/www/." , "/code/"]
+        # - cp
+        # - -r
+        # - /var/www/.
+        # - /code/
+      - name: chown
+        image: busybox
+        volumeMounts:
+        - name: code-storage
+          mountPath: /code
+        command: ["chown", "-R", "1000:1000", "/code/"]
+        # - chown
+        # - "-R"
+        # - "1000:1000"
+        # - "/code/"
         # - name: laravel-horizon
         #   image: smart48/smt-horizon:latest
         #   # not sure if we need the port and volume here
