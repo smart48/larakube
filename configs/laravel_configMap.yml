@@ -1,0 +1,30 @@
+# This Laravel configuration is not in use as of yet
+# https://www.magalix.com/blog/running-dockerized-laravel-applications-on-top-of-kubernetes#id-13
+# To be loaded in deployment with
+# envFrom:
+#   - configMapRef:
+#   name: laravel-config
+# as it would be used during initContainer run
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: laravel-config
+data:
+  APP_DEBUG: "false"
+  APP_ENV: local
+  APP_KEY: changeme
+  APP_LOG_LEVEL: debug
+  APP_NAME: "Laravel-Todo"
+  APP_URL: https://www.laravel.com
+  BROADCAST_DRIVER: pusher
+  CACHE_DRIVER: redis
+  QUEUE_DRIVER: redis
+  SESSION_DRIVER: redis
+  DB_CONNECTION: mysql
+  DB_DATABASE: task
+  DB_HOST: host
+  DB_PASSWORD: password
+  DB_PORT: "3306"
+  DB_USERNAME: username
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
