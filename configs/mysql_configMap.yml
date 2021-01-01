@@ -5,7 +5,7 @@ metadata:
   name: mysql-config
 data:
   # MySQL Database data
-  DATABASE_HOST:
+  MYSQL_DATABASE_HOST:
   MYSQL_DATABASE: 
   MYSQL_DB_USER:
   
