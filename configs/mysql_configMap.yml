@@ -1,0 +1,11 @@
+# Not active yet but to be implemented soon
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+data:
+  # MySQL Database data
+  DATABASE_HOST:
+  MYSQL_DATABASE: 
+  MYSQL_DB_USER:
+  
