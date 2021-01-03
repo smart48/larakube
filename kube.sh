@@ -70,6 +70,12 @@ kubectl get services
 
 # Deployments
 echo -e "${BLUE}Start or update all Deployments we need${NC}";
+
+# PHP Configuration file
+kubectl apply -f configs/laravel_configMap.yml
+
+# PHP Deployment
+echo -e "${BLUE}Start PHP App Deployment${NC}";
 kubectl apply -f deployments/php.yml
 
 # Nginx Configuration file
