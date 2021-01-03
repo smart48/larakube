@@ -14,12 +14,11 @@ spec:
       containers:
         - name: laravel-horizon
           image: smart48/smt-laravel-horizon:latest
-          # not sure if we need the port and volume here
-          # ports:
-          #   - containerPort: 9377
-          # volumeMounts:
-          #   - name: code
-          #     mountPath: /code
+          ports:
+            - containerPort: 9377
+          volumeMounts:
+            - name: code
+              mountPath: /code
           command: ["/usr/local/bin/php", "artisan", "horizon"]
           lifecycle:
             preStop:
