@@ -1,3 +1,13 @@
+# Laravel PHP Application Deployment
+#
+# Custome PHP FMP Docker image, initContainer using same image
+# as well as a Busybox image
+#
+# Inspiration:
+# https://itnext.io/scaling-your-symfony-application-and-preparing-it-for-deployment-on-kubernetes-c102bf246a93
+# https://www.magalix.com/blog/running-dockerized-laravel-applications-on-top-of-kubernetes
+# https://gist.github.com/CodingMonkTech/cafec3a17d2d29f595b01d5b394b0478
+# https://lorenzo.aiello.family/running-laravel-on-kubernetes/
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -9,7 +19,7 @@ metadata:
 spec:
   # autoscale using `kubectl autoscale deployment x --cpu-percent=50 --min=1 --max=10` instead of setting replicas
   # https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
-  # replicas: 2 
+  replicas: 2 
   selector:
     matchLabels:
       app: php
@@ -25,9 +35,42 @@ spec:
         app: php
         tier: backend
     spec:
+      initContainers:
+        # args take precedence over commands
+      - args:
+          - /bin/bash
+          - -c
+          - (php artisan migrate || true) && (php artisan config:cache || true) && (php
+            artisan route:cache || true) && (cp -rp /var/www /code)
+        envFrom:
+          - configMapRef:
+              name: laravel-config
+        name: install
+        image: smart48/smt-laravel:2.0.9
+        volumeMounts:
+        - name: code-storage
+          mountPath: /code
+        # basic command one liner
+        # command: ["cp", "-r", "/var/www/." , "/code/"]
+        # working setup with command spread over mulitple lines
+        # command:
+        # - cp 
+        # "-r"
+        # - "/var/www/."
+        # - "/code/"
+      - name: chown
+        image: busybox
+        volumeMounts:
+        - name: code-storage
+          mountPath: /code
+        command: ["chown", "-R", "1000:1000", "/code/"]
+        # command:
+        # - chown
+        # - "-R"
+        # - "1000:1000"
+        # - "/code/"
       containers:
         - name: php
-          # image: php:7-fpm
           image: smart48/smt-laravel:2.0.9
           imagePullPolicy: IfNotPresent
           ports:
@@ -37,70 +80,10 @@ spec:
               cpu: 250m
             limits:
               cpu: 500m
-          # lifecycle:
-          #   postStart:
-          #     exec:
-          #       command: ["/bin/bash", "-c", "cp -rt /var/www/. /code/"]
           volumeMounts:
           - name: code-storage
-          # may use /var/www/html at a later stage as this is php container base path 
-          # and logical web root
             mountPath: /code
-      initContainers:
-      - name: install
-        image: smart48/smt-laravel:2.0.9
-        volumeMounts:
-        - name: code-storage
-          mountPath: /code
-          # https://itnext.io/scaling-your-symfony-application-and-preparing-it-for-deployment-on-kubernetes-c102bf246a93
-          # https://www.magalix.com/blog/running-dockerized-laravel-applications-on-top-of-kubernetes
-        command: ["cp", "-r", "/var/www/." , "/code/"]
-        # - cp -r /var/www/. /code/
-        # - cd /code
-        # - (php artisan migrate || true) && (php artisan config:cache || true) && (php artisan route:cache || true)
-        # envFrom:
-        #     - configMapRef:
-        #         name: laravel-config
-      - name: chown
-        image: busybox
-        volumeMounts:
-        - name: code-storage
-          mountPath: /code
-        command: ["chown", "-R", "1000:1000", "/code/"]
-        # - chown
-        # - "-R"
-        # - "1000:1000"
-        # - "/code/"
-        # - name: laravel-horizon
-        #   image: smart48/smt-horizon:latest
-        #   # not sure if we need the port and volume here
-        #   imagePullPolicy: IfNotPresent
-        #   ports:
-        #     - containerPort: 9377
-        #   volumeMounts:
-        #     - name: code-storage
-        #       mountPath: /code
-        #   command: ["/usr/local/bin/php", "artisan", "horizon"]
-        #   lifecycle:
-        #     preStop:
-        #       exec:
-        #         command: ["/usr/local/bin/php", "artisan", "horizon:terminate"]
-      # Laravel Code Download so we can run Horizon without issues 
-      # and have a codebase to start with For private repo better to add code to laravel image 
-      # https://codepre.com/how-to-perform-git-clone-in-kubernetes-pod-deployment.html
-      # commented out as we only need to fire it on first deployment
-      # initContainers:
-      #   - name: git-cloner
-      #     image: alpine/git
-      #     args:
-      #         - clone
-      #         - --single-branch
-      #         - --
-      #         - https://github.com/smart48/smt-demo
-      #         - /data
-      #     volumeMounts:
-      #     - mountPath: /data
-      #       name: code-storage
+      
       volumes:
         - name: code-storage
           persistentVolumeClaim:
