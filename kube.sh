@@ -40,17 +40,24 @@ echo -e "${BLUE}Completed${NC}"
 echo -e "${BLUE}Show all added volumes with storage capacity, status, claim and storage class${NC}";
 kubectl get pv
 
+# Set MySQL Configration
+echo -e "${BLUE}Add MySQL Config Vars${NC}";
+kubectl apply -f configs/mysql_configMap.yml
+
 # Set secret for MySQL
-echo -e "${BLUE}Start or update all Services we need${NC}";
+echo -e "${BLUE}Add MySQL Secrets${NC}";
 kubectl apply -f secrets/mysql-secrets.yml
 
 # Set up PHP Service
+echo -e "${BLUE}Set up PHP Service${NC}";
 kubectl apply -f services/php.yml
 
 # Set up Nginx Service
+echo -e "${BLUE}Set up Nginx Service${NC}";
 kubectl apply -f services/nginx.yml
 
 # Set up Workspace Service
+echo -e "${BLUE}Set up Workspace Service${NC}";
 kubectl apply -f services/workspace.yml
 
 echo -e "${BLUE}Sleeping for 3 seconds…${NC}"
