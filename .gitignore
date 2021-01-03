@@ -1,1 +1,2 @@
 secrets/mysql-secrets.yml
+configs/laravel_configMap.yml
