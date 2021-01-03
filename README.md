@@ -167,9 +167,15 @@ drwxrwxrwx 7  999 root 4096 Dec  8 06:39 mysql-pv-claim
 drwxrwxrwx 2 root root 4096 Dec  7 05:02 nginx-pv-claim
 ```
 
-### Database Secrets
+### Database Secrets & Config Vars
 
-We do have a secret to store MySQL data. Do rename it / remove the .example part before you run this command:
+To implmenet the known parts that do not need to be secret apply the MySQL Config map:
+
+```
+kubectl apply -f configs/mysql_configMap.yml
+```
+
+We do have secrets to store MySQL data. Do rename the file / remove the `.example` part before you run this command:
 
 ```
 kubectl apply -f secrets/mysql-secrets.yml
