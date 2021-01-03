@@ -14,8 +14,12 @@ Local *Minikube* development with Laravel can be done with this Larakube setup. 
 
 ## Quick Start
 
-To quickly get started 
-- rename secrets removing the `.example` part and add your own values
+To quickly get started:
+
+- rename `secrets/.env-secrets.yml.example` to `secrets/.env-secrets.yml` 
+- add your own values
+- rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
+- add your own values
 - run `minikube start` 
 
 followed by the use of the `kube.sh` script in the local directory:
@@ -213,9 +217,13 @@ We may remove this service later down the line.
 
 Local deployments are split in deployments for the app and other containers
 
-To fire up the app with the Laravel and Nginx container run
+To fire up the app with the Laravel and Nginx container 
+
+- rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml` if you hadn't
+- add your own values
 
 ```
+kubectl apply -f configs/laravel_configMap.yml
 kubectl apply -f deployments/php.yml
 ```
 
