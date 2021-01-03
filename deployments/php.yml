@@ -41,7 +41,7 @@ spec:
           - /bin/bash
           - -c
           - (php artisan migrate || true) && (php artisan config:cache || true) && (php
-            artisan route:cache || true) && (cp -rp /var/www /code)
+            artisan route:cache || true) && (cp -rp /var/www/. /code)
         envFrom:
           - configMapRef:
               name: laravel-config
@@ -71,6 +71,9 @@ spec:
         # - "/code/"
       containers:
         - name: php
+          envFrom:
+            - configMapRef:
+                name: laravel-config
           image: smart48/smt-laravel:2.0.9
           imagePullPolicy: IfNotPresent
           ports:
