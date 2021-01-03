@@ -5,7 +5,8 @@ metadata:
   name: mysql-config
 data:
   # MySQL Database data
-  MYSQL_DATABASE_HOST:
-  MYSQL_DATABASE: 
-  MYSQL_DB_USER:
+  # Database host variable not implemented yet.
+  # MYSQL_DATABASE_HOST:
+  MYSQL_DATABASE_NAME: smt-local-db
+  MYSQL_DB_USER: smt-database-user
   
