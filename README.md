@@ -172,7 +172,7 @@ drwxrwxrwx 2 root root 4096 Dec  7 05:02 nginx-pv-claim
 We do have a secret to store MySQL data
 
 ```
-kubectl apply -f secret.yml
+kubectl apply -f secrets/mysql-secrets.yml
 ```
 
 

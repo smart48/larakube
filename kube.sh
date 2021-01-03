@@ -42,7 +42,7 @@ kubectl get pv
 
 # Set secret for MySQL
 echo -e "${BLUE}Start or update all Services we need${NC}";
-kubectl apply -f secret.yml
+kubectl apply -f secrets/mysql-secrets.yml
 
 # Set up PHP Service
 kubectl apply -f services/php.yml
