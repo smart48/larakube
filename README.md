@@ -169,7 +169,7 @@ drwxrwxrwx 2 root root 4096 Dec  7 05:02 nginx-pv-claim
 
 ### Database Secrets
 
-We do have a secret to store MySQL data
+We do have a secret to store MySQL data. Do rename it / remove the .example part before you run this command:
 
 ```
 kubectl apply -f secrets/mysql-secrets.yml
