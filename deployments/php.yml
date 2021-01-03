@@ -55,10 +55,12 @@ spec:
           # https://itnext.io/scaling-your-symfony-application-and-preparing-it-for-deployment-on-kubernetes-c102bf246a93
           # https://www.magalix.com/blog/running-dockerized-laravel-applications-on-top-of-kubernetes
         command: ["cp", "-r", "/var/www/." , "/code/"]
-        # - cp
-        # - -r
-        # - /var/www/.
-        # - /code/
+        # - cp -r /var/www/. /code/
+        # - cd /code
+        # - (php artisan migrate || true) && (php artisan config:cache || true) && (php artisan route:cache || true)
+        # envFrom:
+        #     - configMapRef:
+        #         name: laravel-config
       - name: chown
         image: busybox
         volumeMounts:
