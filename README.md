@@ -16,12 +16,11 @@ Local *Minikube* development with Laravel can be done with this Larakube setup. 
 
 To quickly get started:
 
-- rename `secrets/.env-secrets.yml.example` to `secrets/.env-secrets.yml` 
-- add your own values
+- rename `secrets//mysql-secrets.example` to `secrets/.env-secrets.yml`
+- add values to `secrets/mysql-secrets.yml`
 - rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
 - add your own values
-- rename `secrets/.env-secrets.yml.example` to `secrets/.env-secrets.yml`
-- add values to `secrets/mysql-secrets.yml`
+- add values to `configs/mysql_configMap.yml` of your own choosing
 - run `minikube start` 
 
 followed by the use of the `kube.sh` script in the local directory:
@@ -38,12 +37,11 @@ It will run all the necessary scripts to get you started with Minikube locally. 
 
 As with the quickstart do do the following:
 
-- rename `secrets/.env-secrets.yml.example` to `secrets/.env-secrets.yml` 
-- add your own values
+- rename `secrets//mysql-secrets.example` to `secrets/.env-secrets.yml`
+- add values to `secrets/mysql-secrets.yml`
 - rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
 - add your own values
-- rename `secrets/.env-secrets.yml.example` to `secrets/.env-secrets.yml`
-- add values to `secrets/mysql-secrets.yml`
+- add values to `configs/mysql_configMap.yml` of your own choosing
 
 
 To get Minikube running execute the following command:
