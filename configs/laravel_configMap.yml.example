@@ -15,8 +15,8 @@ data:
   APP_ENV: local
   APP_KEY: changeme
   APP_LOG_LEVEL: debug
-  APP_NAME: "Laravel-Todo"
-  APP_URL: https://www.laravel.com
+  APP_NAME: "Laravel-Demo"
+  APP_URL: https//smart48k8.local
   BROADCAST_DRIVER: pusher
   CACHE_DRIVER: redis
   QUEUE_DRIVER: redis
