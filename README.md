@@ -20,6 +20,8 @@ To quickly get started:
 - add your own values
 - rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
 - add your own values
+- rename `secrets/.env-secrets.yml.example` to `secrets/.env-secrets.yml`
+- add values to `secrets/mysql-secrets.yml`
 - run `minikube start` 
 
 followed by the use of the `kube.sh` script in the local directory:
@@ -33,6 +35,16 @@ It will run all the necessary scripts to get you started with Minikube locally. 
 **NB** Due to Ingress setup being somewhat slow sometimes you may need to run script twice.
 
 ## Startup
+
+As with the quickstart do do the following:
+
+- rename `secrets/.env-secrets.yml.example` to `secrets/.env-secrets.yml` 
+- add your own values
+- rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
+- add your own values
+- rename `secrets/.env-secrets.yml.example` to `secrets/.env-secrets.yml`
+- add values to `secrets/mysql-secrets.yml`
+
 
 To get Minikube running execute the following command:
 
