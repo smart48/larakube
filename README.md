@@ -14,7 +14,11 @@ Local *Minikube* development with Laravel can be done with this Larakube setup. 
 
 ## Quick Start
 
-To quickly get started run `minikube start` followed by the use of the `kube.sh` script in the local directory:
+To quickly get started 
+- rename secrets removing the `.example` part and add your own values
+- run `minikube start` 
+
+followed by the use of the `kube.sh` script in the local directory:
 
 - on Zsh shell use `bash kube.sh`
 - on Bash shell use `./kube.sh`
