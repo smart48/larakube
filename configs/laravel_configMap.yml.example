@@ -4,7 +4,8 @@
 # envFrom:
 #   - configMapRef:
 #   name: laravel-config
-# as it would be used during initContainer run
+# as it would be used during initContainer run 
+# and main app container image run
 apiVersion: v1
 kind: ConfigMap
 metadata:
