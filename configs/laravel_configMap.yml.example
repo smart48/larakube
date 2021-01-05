@@ -6,6 +6,8 @@
 #   name: laravel-config
 # as it would be used during initContainer run 
 # and main app container image run
+# vars based on https://github.com/smart48/laravel-demo-app/blob/master/.env.smt.docker.example
+# and https://github.com/kadnan/LearningK8s
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -17,15 +19,27 @@ data:
   APP_LOG_LEVEL: debug
   APP_NAME: "Laravel-Demo"
   APP_URL: https//smart48k8.local
+  LOG_CHANNEL: stack
   BROADCAST_DRIVER: pusher
   CACHE_DRIVER: redis
   QUEUE_DRIVER: redis
   SESSION_DRIVER: redis
-  DB_CONNECTION: mysql
-  DB_DATABASE: task
-  DB_HOST: host
+  # DB_CONNECTION=mysql
+  DB_HOST: mysql-service
+  DB_PORT: 3306
+  DB_DATABASE: smt_local_db
+  DB_USERNAME: smt_database_user
   DB_PASSWORD: password
-  DB_PORT: "3306"
-  DB_USERNAME: username
+  
+  # DB_CONNECTION Published
+  # Not set up yet
+  # DB_PUBLISH_HOST: mysql2-service
+  # DB_PUBLISH_PORT: 3306
+  # DB_PUBLISH_DATABASE: published
+  # DB_PUBLISH_USERNAME: default
+  # DB_PUBLISH_PASSWORD: secret
+
+  # Redis
   REDIS_HOST: redis
-  REDIS_PORT: "6379"
+  REDIS_PASSWORD: null
+  REDIS_PORT: 6380
