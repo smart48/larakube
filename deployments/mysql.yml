@@ -28,16 +28,16 @@ spec:
                 secretKeyRef:
                   name: mysql-secrets
                   key: ROOT_PASSWORD
-            - name: MYSQL_DATABASE_NAME
+            - name: MYSQL_DATABASE
               valueFrom:
                 configMapKeyRef:
                   name: mysql-config
-                  key: MYSQL_DATABASE_NAME
-            - name: MYSQL_DB_USER
+                  key: MYSQL_DATABASE
+            - name: MYSQL_USER
               valueFrom:
                 configMapKeyRef:
                   name: mysql-config
-                  key: MYSQL_DB_USER
+                  key: MYSQL_USER
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
