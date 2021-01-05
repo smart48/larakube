@@ -60,6 +60,10 @@ kubectl apply -f services/nginx.yml
 echo -e "${BLUE}Set up Workspace Service${NC}";
 kubectl apply -f services/workspace.yml
 
+# Set up MySQL Service
+echo -e "${BLUE}Set up MySQL Service${NC}";
+kubectl apply -f services/mysql.yml
+
 echo -e "${BLUE}Sleeping for 3 seconds…${NC}"
 sleep 3
 echo -e "${BLUE}Completed${NC}"

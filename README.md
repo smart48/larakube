@@ -223,6 +223,12 @@ kubectl apply -f services/workspace.yml
 
 We may remove this service later down the line.
 
+And then we have the mysql service to connect to the database. We will implement two in the future but we start with one:
+
+```
+kubectl apply -f services/mysql.yml
+```
+
 ### Local Deployments 
 
 Local deployments are split in deployments for the app and other containers
