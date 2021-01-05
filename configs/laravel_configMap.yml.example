@@ -15,6 +15,7 @@ metadata:
 data:
   APP_DEBUG: "false"
   APP_ENV: local
+  # php artisan key:generate --show
   APP_KEY: changeme
   APP_LOG_LEVEL: debug
   APP_NAME: "Laravel Demo"
