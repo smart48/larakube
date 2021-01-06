@@ -16,11 +16,14 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis:latest
+        image: smart48/smt-redis:1.4
         imagePullPolicy: IfNotPresent
         # command:
-        # - redis-server
-        # - "/redis-master/redis.conf"
+        # - cp
+        # - "redis.conf" 
+        # - "/usr/local/etc/redis"
+        # - "redis-server"
+        # - "/usr/local/etc/redis/redis.conf"
         env:
         - name: redis_ROOT_PASSWORD
           valueFrom:
