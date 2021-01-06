@@ -16,11 +16,14 @@ Local *Minikube* development with Laravel can be done with this Larakube setup. 
 
 To quickly get started:
 
-- rename `secrets//mysql-secrets.example` to `secrets/.env-secrets.yml`
+- rename `secrets//mysql-secrets.example` to `secrets/.mysql-secrets.yml`
+- add values to `secrets/mysql-secrets.yml`
+- rename `secrets//redis-secrets.example` to `secrets/.redis-secrets.yml`
 - add values to `secrets/mysql-secrets.yml`
 - rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
 - add your own values
 - add values to `configs/mysql_configMap.yml` of your own choosing
+- add values to `configs/redis_configMap.yml` of your own choosing
 - run `minikube start` 
 
 followed by the use of the `kube.sh` script in the local directory:
@@ -37,11 +40,14 @@ It will run all the necessary scripts to get you started with Minikube locally. 
 
 As with the quickstart do do the following:
 
-- rename `secrets//mysql-secrets.example` to `secrets/.env-secrets.yml`
+- rename `secrets//mysql-secrets.example` to `secrets/.mysql-secrets.yml`
+- add values to `secrets/mysql-secrets.yml`
+- rename `secrets//redis-secrets.example` to `secrets/.redis-secrets.yml`
 - add values to `secrets/mysql-secrets.yml`
 - rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
 - add your own values
 - add values to `configs/mysql_configMap.yml` of your own choosing
+- add values to `configs/redis_configMap.yml` of your own choosing
 
 
 To get Minikube running execute the following command:
@@ -191,12 +197,14 @@ To implmenet the known parts that do not need to be secret apply the MySQL Confi
 
 ```
 kubectl apply -f configs/mysql_configMap.yml
+kubectl apply -f configs/redis_configMap.yml
 ```
 
-We do have secrets to store MySQL data. Do rename the file / remove the `.example` part before you run this command:
+We do have secrets to store MySQL and Redis data. Do rename the files / remove the `.example` part before you run these commands:
 
 ```
 kubectl apply -f secrets/mysql-secrets.yml
+kubectl apply -f secrets/redis-secrets.yml
 ```
 
 
@@ -223,13 +231,14 @@ kubectl apply -f services/workspace.yml
 
 We may remove this service later down the line.
 
-And then we have the mysql service to connect to the database. We will implement two in the future but we start with one:
+And then we have the MySQL and Redis services to connect to the databases. We will implement two MySQL database services in the future but we start with one:
 
 ```
 kubectl apply -f services/mysql.yml
-```
+kubectl apply -f services/redis.yml
 
-### Local Deployments 
+```
+### Deployments 
 
 Local deployments are split in deployments for the app and other containers
 
@@ -250,7 +259,7 @@ kubectl apply -f deployments/nginx.yml
 ```
 
 
-#### Worspace and Worker Deployments
+#### Workspace and Worker Deployments
 
 then we have the other deployments excluding the databases:
 

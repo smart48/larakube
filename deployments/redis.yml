@@ -15,21 +15,36 @@ spec:
         app: redis
     spec:
       containers:
-      - image: smart48/smt-redis:latest
-        name: redis
-        imagePullPolicy: Never
+      - name: redis
+        image: redis:latest
+        imagePullPolicy: IfNotPresent
+        # command:
+        # - redis-server
+        # - "/redis-master/redis.conf"
         env:
         - name: redis_ROOT_PASSWORD
-          value: .sweetpwd.
+          valueFrom:
+            secretKeyRef:
+              name: redis-secrets
+              key: redis_ROOT_PASSWORD
         - name: redis_DATABASE
-          value: my_db
+          valueFrom:
+            configMapKeyRef:
+              name: redis-config
+              key: redis_DATABASE
         - name: redis_USER
-          value: db_user
+          valueFrom:
+            configMapKeyRef:
+              name: redis-config
+              key: redis_USER
         - name: redis_PASSWORD
-          value: .mypwd
-        args: ["--default-authentication-plugin=redis_native_password"]
+          valueFrom:
+            secretKeyRef:
+              name: redis-secrets
+              key: redis_PASSWORD
+        # args: ["--default-authentication-plugin=redis_native_password"]
         ports:
-        - containerPort: 3306
+        - containerPort: 6379
           name: redis
         volumeMounts:
           - name: redis-persistent-storage

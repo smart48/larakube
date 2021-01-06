@@ -44,9 +44,17 @@ kubectl get pv
 echo -e "${BLUE}Add MySQL Config Vars${NC}";
 kubectl apply -f configs/mysql_configMap.yml
 
+# Set Redis Configration
+echo -e "${BLUE}Add Redis Config Vars${NC}";
+kubectl apply -f configs/redis_configMap.yml
+
 # Set secret for MySQL
 echo -e "${BLUE}Add MySQL Secrets${NC}";
 kubectl apply -f secrets/mysql-secrets.yml
+
+# Set secret for Redis
+echo -e "${BLUE}Add MySQL Secrets${NC}";
+kubectl apply -f secrets/redis-secrets.yml
 
 # Set up PHP Service
 echo -e "${BLUE}Set up PHP Service${NC}";
@@ -63,6 +71,10 @@ kubectl apply -f services/workspace.yml
 # Set up MySQL Service
 echo -e "${BLUE}Set up MySQL Service${NC}";
 kubectl apply -f services/mysql.yml
+
+# Set up Redis Service
+echo -e "${BLUE}Set up Redis Service${NC}";
+kubectl apply -f services/redis.yml
 
 echo -e "${BLUE}Sleeping for 3 seconds…${NC}"
 sleep 3
@@ -101,7 +113,7 @@ kubectl apply -f deployments/workspace.yml
 kubectl apply -f deployments/mysql.yml
 
 # Redis not done yet
-# kubectl apply -f deployments/redis.yml
+kubectl apply -f deployments/redis.yml
 
 
 echo -e "${BLUE}Sleeping for 3 seconds…${NC}"
