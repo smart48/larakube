@@ -46,7 +46,7 @@ spec:
           - configMapRef:
               name: laravel-config
         name: install
-        image: smart48/smt-laravel:2.1.0
+        image: smart48/smt-laravel:2.1.1
         volumeMounts:
         - name: code-storage
           mountPath: /code
@@ -74,7 +74,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: laravel-config
-          image: smart48/smt-laravel:2.1.0
+          image: smart48/smt-laravel:2.1.1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
