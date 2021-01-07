@@ -15,7 +15,8 @@ metadata:
 data:
   APP_DEBUG: "true"
   APP_ENV: local
-  APP_KEY: base64:5B+bM8nEe39w2LLpWagnJTNKFABoYIekC/UZo/Ve1PA=
+  # https://stillat.com/blog/2016/12/07/laravel-artisan-key-command-the-keygenerate-command
+  APP_KEY: badd_one
   APP_LOG_LEVEL: debug
   APP_NAME: "Laravel Demo"
   APP_URL: http//smart48k8.local
