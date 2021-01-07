@@ -18,12 +18,10 @@ To quickly get started:
 
 - rename `secrets//mysql-secrets.example` to `secrets/.mysql-secrets.yml`
 - add values to `secrets/mysql-secrets.yml`
-- rename `secrets//redis-secrets.example` to `secrets/.redis-secrets.yml`
 - add values to `secrets/mysql-secrets.yml`
 - rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
 - add your own values
 - add values to `configs/mysql_configMap.yml` of your own choosing
-- add values to `configs/redis_configMap.yml` of your own choosing
 - run `minikube start` 
 
 followed by the use of the `kube.sh` script in the local directory:
@@ -42,12 +40,10 @@ As with the quickstart do do the following:
 
 - rename `secrets//mysql-secrets.example` to `secrets/.mysql-secrets.yml`
 - add values to `secrets/mysql-secrets.yml`
-- rename `secrets//redis-secrets.example` to `secrets/.redis-secrets.yml`
 - add values to `secrets/mysql-secrets.yml`
 - rename `configs/laravel_configMap.yml.example` to `configs/laravel_configMap.yml`
 - add your own values
 - add values to `configs/mysql_configMap.yml` of your own choosing
-- add values to `configs/redis_configMap.yml` of your own choosing
 
 
 To get Minikube running execute the following command:
@@ -200,15 +196,12 @@ kubectl apply -f configs/mysql_configMap.yml
 kubectl apply -f configs/redis_configMap.yml
 ```
 
-We do have secrets to store MySQL and Redis data. Do rename the files / remove the `.example` part before you run these commands:
+We do have secrets to store MySQL data. Do rename the file / remove the `.example` part before you run this command:
 
 ```
 kubectl apply -f secrets/mysql-secrets.yml
-kubectl apply -f secrets/redis-secrets.yml
 ```
 
-
-**NB** We have not added a block for Redis yet
 ### Services 
 
 To allow Nginx to talk to PHP we do need to expose the PHP container in the app deployment. For that we do a:

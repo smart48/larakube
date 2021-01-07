@@ -44,17 +44,9 @@ kubectl get pv
 echo -e "${BLUE}Add MySQL Config Vars${NC}";
 kubectl apply -f configs/mysql_configMap.yml
 
-# Set Redis Configration
-echo -e "${BLUE}Add Redis Config Vars${NC}";
-kubectl apply -f configs/redis_configMap.yml
-
 # Set secret for MySQL
 echo -e "${BLUE}Add MySQL Secrets${NC}";
 kubectl apply -f secrets/mysql-secrets.yml
-
-# Set secret for Redis
-echo -e "${BLUE}Add MySQL Secrets${NC}";
-kubectl apply -f secrets/redis-secrets.yml
 
 # Set up PHP Service
 echo -e "${BLUE}Set up PHP Service${NC}";
@@ -98,6 +90,7 @@ kubectl apply -f deployments/php.yml
 kubectl apply -f configs/nginx_configMap.yaml
 
 # Nginx Deployment
+echo -e "${BLUE}Start Nginx Deployment${NC}";
 kubectl apply -f deployments/nginx.yml
 
 # then we have the other deployments excluding the databases:
@@ -110,9 +103,10 @@ kubectl apply -f deployments/workspace.yml
 
 ## Databases
 # To run the MySQL database and Redis containers run
+echo -e "${BLUE}Start MySQL Deployment${NC}";
 kubectl apply -f deployments/mysql.yml
 
-# Redis not done yet
+# Redis Deployment
 kubectl apply -f deployments/redis.yml
 
 

@@ -18,34 +18,6 @@ spec:
       - name: redis
         image: smart48/smt-redis:1.4
         imagePullPolicy: IfNotPresent
-        # command:
-        # - cp
-        # - "redis.conf" 
-        # - "/usr/local/etc/redis"
-        # - "redis-server"
-        # - "/usr/local/etc/redis/redis.conf"
-        env:
-        - name: redis_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: redis-secrets
-              key: redis_ROOT_PASSWORD
-        - name: redis_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: redis-config
-              key: redis_DATABASE
-        - name: redis_USER
-          valueFrom:
-            configMapKeyRef:
-              name: redis-config
-              key: redis_USER
-        - name: redis_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: redis-secrets
-              key: redis_PASSWORD
-        # args: ["--default-authentication-plugin=redis_native_password"]
         ports:
         - containerPort: 6379
           name: redis
