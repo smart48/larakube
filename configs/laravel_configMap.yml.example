@@ -15,6 +15,7 @@ metadata:
 data:
   APP_DEBUG: "true"
   APP_ENV: local
+  # useful link for adding key:
   # https://stillat.com/blog/2016/12/07/laravel-artisan-key-command-the-keygenerate-command
   APP_KEY: add_one
   APP_LOG_LEVEL: debug
