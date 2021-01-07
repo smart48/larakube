@@ -13,10 +13,9 @@ kind: ConfigMap
 metadata:
   name: laravel-config
 data:
-  APP_DEBUG: "false"
+  APP_DEBUG: "true"
   APP_ENV: local
-  # php artisan key:generate --show
-  APP_KEY: changeme
+  APP_KEY: base64:5B+bM8nEe39w2LLpWagnJTNKFABoYIekC/UZo/Ve1PA=
   APP_LOG_LEVEL: debug
   APP_NAME: "Laravel Demo"
   APP_URL: http//smart48k8.local
@@ -39,6 +38,6 @@ data:
   # DB_PUBLISH_USERNAME: default
   # DB_PUBLISH_PASSWORD: secret
   # Redis
-  REDIS_HOST: redis
-  REDIS_PASSWORD: password
-  REDIS_PORT: "6380"
+  REDIS_HOST: redis-service
+  # REDIS_PASSWORD: password
+  # REDIS_PORT: "6379"
