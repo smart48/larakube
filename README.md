@@ -204,16 +204,10 @@ kubectl apply -f secrets/mysql-secrets.yml
 
 ### Services 
 
-To allow Nginx to talk to PHP we do need to expose the PHP container in the app deployment. For that we do a:
+To have Ingress load data from the web deployment where we have Nginx and PHP FPM you need one service:
 
 ```
-kubectl apply -f services/php.yml
-```
-
-and for nginx to get Ingress to move data there
-
-```
-kubectl apply -f services/nginx.yml
+kubectl apply -f services/web.yml
 ```
 
 For the workspace we use the following:
@@ -242,16 +236,19 @@ To fire up the app with the Laravel and Nginx container
 
 ```
 kubectl apply -f configs/laravel_configMap.yml
-kubectl apply -f deployments/php.yml
 ```
 
-and then
+Then run the Nginx configuration file
+
+
 ```
 kubectl apply -f configs/nginx_configMap.yaml
-kubectl apply -f deployments/nginx.yml
 ```
 
-
+followed by the actual deployment
+```
+kubectl apply -f deployments/web.yml
+```
 #### Workspace and Worker Deployments
 
 then we have the other deployments excluding the databases:
