@@ -48,13 +48,17 @@ kubectl apply -f configs/mysql_configMap.yml
 echo -e "${BLUE}Add MySQL Secrets${NC}";
 kubectl apply -f secrets/mysql-secrets.yml
 
+# Set up Web Service
+echo -e "${BLUE}Set up Web Service${NC}";
+kubectl apply -f services/web.yml
+
 # Set up PHP Service
-echo -e "${BLUE}Set up PHP Service${NC}";
-kubectl apply -f services/php.yml
+# echo -e "${BLUE}Set up PHP Service${NC}";
+# kubectl apply -f services/php.yml
 
 # Set up Nginx Service
-echo -e "${BLUE}Set up Nginx Service${NC}";
-kubectl apply -f services/nginx.yml
+# echo -e "${BLUE}Set up Nginx Service${NC}";
+# kubectl apply -f services/nginx.yml
 
 # Set up Workspace Service
 echo -e "${BLUE}Set up Workspace Service${NC}";
@@ -83,15 +87,15 @@ echo -e "${BLUE}Start or update all Deployments we need${NC}";
 kubectl apply -f configs/laravel_configMap.yml
 
 # PHP Deployment
-echo -e "${BLUE}Start PHP App Deployment${NC}";
-kubectl apply -f deployments/php.yml
+# echo -e "${BLUE}Start PHP App Deployment${NC}";
+# kubectl apply -f deployments/php.yml
 
 # Nginx Configuration file
 kubectl apply -f configs/nginx_configMap.yaml
 
-# Nginx Deployment
-echo -e "${BLUE}Start Nginx Deployment${NC}";
-kubectl apply -f deployments/nginx.yml
+# Nginx & PHP Deployments
+echo -e "${BLUE}Start Nginx & PHP Deployment${NC}";
+kubectl apply -f deployments/web.yml
 
 # then we have the other deployments excluding the databases:
 
