@@ -1,14 +1,33 @@
----
-apiVersion: autoscaling/v1
+# PHP Autoscaler Resource
+# You can introduce additional metrics to use when autoscaling the php-apache Deployment 
+# by making use of the autoscaling/v2beta2 API version.
+#
+# This resource is for Pod / Deployment or Horizontal Pod Autoscaler
+# 
+# Node pool autoscaling or Cluster Autocaling on DO https://www.digitalocean.com/docs/kubernetes/how-to/autoscale/
+# can be done with doctl or from control panel.
+# See also https://blog.scaleway.com/understanding-kubernetes-autoscaling/
+apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  namespace: smt-local
-  name: autoscaler
+  name: php
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: app
-  minReplicas: 2
-  maxReplicas: 20
-  targetCPUUtilizationPercentage: 50
+    name: php
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+status:
+  observedGeneration: 1
+  lastScaleTime: <some-time>
+  currentReplicas: 1
+  desiredReplicas: 1
+  currentMetrics:
